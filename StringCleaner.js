@@ -3,9 +3,9 @@ function CleanString(str) {
             return  str;
         }
         let withOutHtml = str.replace(/(<([^>]+)>)/ig, "");
-        withOutHtml = withOutHtml.trim();
-        withOutHtml = withOutHtml.replace(/&nbsp;/ig, " ");
-        withOutHtml = withOutHtml.replace(/&#160;/ig, " ");
+        let trimmed = withOutHtml.trim();
+        let htmlEntityNormalized = trimmed.replace(/&nbsp;/ig, " ");
+        withOutHtml = htmlEntityNormalized.replace(/&#160;/ig, " ");
         if (withOutHtml.length > 1000)
             return withOutHtml.slice(1, 1000);
         return withOutHtml;
