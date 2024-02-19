@@ -4,19 +4,24 @@ function removeHtmlTags(str) {
     }
     return str.replace(/<[^>]*>/g, "");
 }
+function replaceHtmlEntities(str) {
+    if (!(str && str.length > 0)) {
+        return  str;
+    }
+    return str.replace(/&#160;|&nbsp;/g, " ");
+}
 function CleanString(str) {
         if (!(str && str.length > 0)) {
             return  str;
         }
         let withOutHtml = removeHtmlTags(str);
         let trimmed = withOutHtml.trim();
-        let htmlEntityNormalized = trimmed.replace(/&nbsp;/ig, " ");
-        let numericHtmlEntityNormalized = htmlEntityNormalized.replace(/&#160;/ig, " ");
-        if (numericHtmlEntityNormalized.length > 1000)
+        let htmlEntityNormalized = replaceHtmlEntities(trimmed);
+        if (htmlEntityNormalized.length > 1000)
         {
-            numericHtmlEntityNormalized = numericHtmlEntityNormalized.slice(1, 1000);
+            htmlEntityNormalized = htmlEntityNormalized.slice(1, 1000);
         }
-        return numericHtmlEntityNormalized;
+        return htmlEntityNormalized;
 
 }
 
@@ -34,6 +39,8 @@ TestFunction(null, null, removeHtmlTags);
 
 
 
+TestFunction('', '', replaceHtmlEntities);
+TestFunction(null, null, replaceHtmlEntities);
 
 console.log('End');
 
