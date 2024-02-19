@@ -26,9 +26,26 @@ console.log('End');
 
 function TestStrippedString(input, expected) {
     var result = CleanString(input);
+
+
+    //simplify
+    input = labelAsEmptyORNullString(input);
+    result = labelAsEmptyORNullString(result);
+    expected = labelAsEmptyORNullString(expected);
+
     if (result === expected) {
         console.log("Passed Given: ", input, " CleanString should return: ", expected);
     } else {
         console.log("Failed Given: ", input, " CleanString should return: ", expected, " but returned: ", result);
     }
+}
+
+function labelAsEmptyORNullString(input) {
+    if (input === null) {
+        return 'null';
+    }
+    if (input === '') {
+        return 'EmptyString';
+    }
+    return input;
 }
