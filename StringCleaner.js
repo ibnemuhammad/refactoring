@@ -5,10 +5,10 @@ function CleanString(str) {
         let withOutHtml = str.replace(/(<([^>]+)>)/ig, "");
         let trimmed = withOutHtml.trim();
         let htmlEntityNormalized = trimmed.replace(/&nbsp;/ig, " ");
-        withOutHtml = htmlEntityNormalized.replace(/&#160;/ig, " ");
-        if (withOutHtml.length > 1000)
-            return withOutHtml.slice(1, 1000);
-        return withOutHtml;
+        let numericHtmlEntityNormalized = htmlEntityNormalized.replace(/&#160;/ig, " ");
+        if (numericHtmlEntityNormalized.length > 1000)
+            return numericHtmlEntityNormalized.slice(1, 1000);
+        return numericHtmlEntityNormalized;
 
 }
 
