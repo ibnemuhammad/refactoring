@@ -7,7 +7,9 @@ function CleanString(str) {
         let htmlEntityNormalized = trimmed.replace(/&nbsp;/ig, " ");
         let numericHtmlEntityNormalized = htmlEntityNormalized.replace(/&#160;/ig, " ");
         if (numericHtmlEntityNormalized.length > 1000)
-            return numericHtmlEntityNormalized.slice(1, 1000);
+        {
+            numericHtmlEntityNormalized = numericHtmlEntityNormalized.slice(1, 1000);
+        }
         return numericHtmlEntityNormalized;
 
 }
