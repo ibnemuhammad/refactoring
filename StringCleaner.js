@@ -2,13 +2,13 @@ function CleanString(str) {
         if (!(str && str.length > 0)) {
             return  str;
         }
-        var StrippedString = str.replace(/(<([^>]+)>)/ig, "");
-        StrippedString = StrippedString.trim();
-        StrippedString = StrippedString.replace(/&nbsp;/ig, " ");
-        StrippedString = StrippedString.replace(/&#160;/ig, " ");
-        if (StrippedString.length > 1000)
-            return StrippedString.slice(1, 1000);
-        return StrippedString;
+        let withOutHtml = str.replace(/(<([^>]+)>)/ig, "");
+        withOutHtml = withOutHtml.trim();
+        withOutHtml = withOutHtml.replace(/&nbsp;/ig, " ");
+        withOutHtml = withOutHtml.replace(/&#160;/ig, " ");
+        if (withOutHtml.length > 1000)
+            return withOutHtml.slice(1, 1000);
+        return withOutHtml;
 
 }
 
