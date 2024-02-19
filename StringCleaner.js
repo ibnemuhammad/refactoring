@@ -16,6 +16,7 @@ console.log('Start');
 TestStrippedString('', '');
 TestStrippedString(null, null);
 TestStrippedString('test', 'test');
+TestStrippedString(' test ', 'test');
 TestStrippedString('<h1>test</h1>', 'test');
 TestStrippedString('test&nbsp;1', 'test 1');
 TestStrippedString('test&#160;1', 'test 1');
