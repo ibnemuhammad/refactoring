@@ -1,14 +1,15 @@
 function CleanString(str) {
-        if (str && str.length > 0) {
-            var StrippedString = str.replace(/(<([^>]+)>)/ig, "");
-            StrippedString = StrippedString.trim();
-            StrippedString = StrippedString.replace(/&nbsp;/ig, " ");
-            StrippedString = StrippedString.replace(/&#160;/ig, " ");
-            if (StrippedString.length > 1000)
-                return StrippedString.slice(1, 1000);
-            return StrippedString;
+        if (!(str && str.length > 0)) {
+            return  str;
         }
-        return str;
+        var StrippedString = str.replace(/(<([^>]+)>)/ig, "");
+        StrippedString = StrippedString.trim();
+        StrippedString = StrippedString.replace(/&nbsp;/ig, " ");
+        StrippedString = StrippedString.replace(/&#160;/ig, " ");
+        if (StrippedString.length > 1000)
+            return StrippedString.slice(1, 1000);
+        return StrippedString;
+
 }
 
 console.log('Start');
