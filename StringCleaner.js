@@ -25,9 +25,7 @@ console.log('End');
 
 
 function TestStrippedString(input, expected) {
-    var result = CleanString(input);
-
-
+    let result = CleanString(input);
     //simplify
     input = labelAsEmptyORNullString(input);
     result = labelAsEmptyORNullString(result);
@@ -42,7 +40,7 @@ function TestStrippedString(input, expected) {
 
 function labelAsEmptyORNullString(input) {
     if (input === null) {
-        return 'null';
+        return 'undefined';
     }
     if (input === '') {
         return 'EmptyString';
