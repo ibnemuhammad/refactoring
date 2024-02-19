@@ -1,4 +1,4 @@
-function StrippedString(str) {
+function CleanString(str) {
         if (str && str.length > 0) {
             var StrippedString = str.replace(/(<([^>]+)>)/ig, "");
             StrippedString = StrippedString.trim();
@@ -6,7 +6,6 @@ function StrippedString(str) {
             StrippedString = StrippedString.replace(/&nbsp;/ig, " ");
             if (StrippedString.length > 1000)
                 return StrippedString.slice(1, 1000);
-
             return StrippedString;
         }
         return str;
@@ -23,7 +22,7 @@ console.log('End');
 
 
 function TestStrippedString(input, expected) {
-    var result = StrippedString(input);
+    var result = CleanString(input);
     if (result === expected) {
         console.log("Test passed for input ", input, " expected ", expected, " and result ", result);
     } else {
