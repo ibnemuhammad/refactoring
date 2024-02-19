@@ -1,28 +1,48 @@
-function removeHtmlTags(str) {
-    if (!(str && str.length > 0)) {
-        return  str;
+class StringManipulator {
+    constructor(str) {
+        this.str = str;
     }
-    return str.replace(/<[^>]*>/g, "");
-}
-function replaceHtmlEntities(str) {
-    if (!(str && str.length > 0)) {
-        return  str;
+
+    removeHtmlTags() {
+        if (!(this.str && this.str.length > 0)) {
+            return this;
+        }
+        this.str = this.str.replace(/<[^>]*>/g, "");
+        return this; // Return the object itself to allow chaining
     }
-    return str.replace(/&#160;|&nbsp;/g, " ");
+
+    replaceHtmlEntities() {
+        if (!(this.str && this.str.length > 0)) {
+            return this;
+        }
+        this.str = this.str.replace(/&#160;|&nbsp;/g, " ");
+        return this; // Return the object itself to allow chaining
+    }
+
+    trim() {
+        this.str = this.str.trim();
+        return this; // Enable chaining for trim as well
+    }
+
+    limitLength(maxLength) {
+        if (this.str.length > maxLength) {
+            this.str = this.str.substring(0, maxLength);
+        }
+        return this; // Enable chaining for length limiting
+    }
+
+    toString() {
+        return this.str; // Return the final string
+    }
 }
 function CleanString(str) {
-        if (!(str && str.length > 0)) {
-            return  str;
-        }
-        let withOutHtml = removeHtmlTags(str);
-        let trimmed = withOutHtml.trim();
-        let htmlEntityNormalized = replaceHtmlEntities(trimmed);
-        if (htmlEntityNormalized.length > 1000)
-        {
-            htmlEntityNormalized = htmlEntityNormalized.slice(1, 1000);
-        }
-        return htmlEntityNormalized;
-
+    if (!str) return str;
+    return new StringManipulator(str)
+        .removeHtmlTags()
+        .trim()
+        .replaceHtmlEntities()
+        .limitLength(1000)
+        .toString();
 }
 
 console.log('Start');
@@ -34,13 +54,6 @@ TestFunction('<h1>test</h1>', 'test');
 TestFunction('test&nbsp;1', 'test 1');
 TestFunction('test&#160;1', 'test 1');
 
-TestFunction('', '', removeHtmlTags);
-TestFunction(null, null, removeHtmlTags);
-
-
-
-TestFunction('', '', replaceHtmlEntities);
-TestFunction(null, null, replaceHtmlEntities);
 
 console.log('End');
 
